@@ -1,23 +1,52 @@
-import logo from './logo.svg';
 import './App.css';
+import {useHistory} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
+import { Route, Switch, useRouteMatch } from 'react-router-dom'
+
+//import components
+import Home from './Components/Home';
+import Login from './Components/Login';
+import Requests from './Components/Requests';
+
 
 function App() {
+  const [user, setUser] = useState(null)
+
+  let history = useHistory()
+  
+
+
+
+  useEffect(() => {
+    async function getUser() {
+      const res = await fetch("/me")
+      if (res.ok) {
+        const json = await res.json()
+        setUser(json)
+        history.push("/")
+      }
+    }
+    getUser()
+  }, [])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar/>
+      <Switch>
+        <Route exact path = '/requests'>
+          {user? <Requests/> : <Redirect to='/login'/>}
+        </Route>
+        <Route exact path = "/login">
+          <Login/>
+        </Route>
+        <Route exact path = '/'>
+          {user? <Home/> : <Redirect to='/login'/>}
+        </Route>
+
+      </Switch>
+
     </div>
   );
 }
