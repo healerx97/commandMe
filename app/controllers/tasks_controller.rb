@@ -14,10 +14,24 @@ class TasksController < ApplicationController
     end
 
     def create
-        task = Task.create(task_params)
+        task = Task.create!(task_params)
         render json: task, status: :created
+
+    rescue ActiveRecord::RecordInvalid => e
+        render json: {errors: e.record.errors.full_messages}, status: :unprocessable_entity
     end
 
+    def received
+        user = User.find(session[:user_id])
+        tasks = Task.where(receiver_id: user.id)
+        render json: tasks
+    end
+
+    def sent
+        user = User.find(session[:user_id])
+        tasks = Task.where(commander_id: user.id)
+        render json: tasks
+    end
 
     private
 
@@ -25,8 +39,8 @@ class TasksController < ApplicationController
         render json: {error: "Not Found"}, status:404
     end
 
-    def raffle_params
-        params.permit(:host_id, :remaining_funding, :purpose)
+    def task_params
+        params.permit(:due_date, :accepted, :reviewed, :commander_id, :receiver_id)
     end
     
 end
