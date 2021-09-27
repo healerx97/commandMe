@@ -5,3 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+require 'date'
+
+puts 'destroying data'
+User.destroy_all
+User.reset_pk_sequence
+Task.destroy_all
+Task.reset_pk_sequence
+Attachment.destroy_all
+Attachment.reset_pk_sequence
+
+10.times do
+    User.create(username: Faker::Internet.username, name: Faker::Name.first_name, password: "asdf")
+end
+
+time = Time.current + 1.days
+
+20.times do
+    Task.create(due_date: time, title: Faker::Hobby.activity, accepted: false, reviewed: false, commander_id: rand(1.10), receiver_id: rand(1..10))
+end
+
+puts 'done'
