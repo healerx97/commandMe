@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit/'
 
 const initialState = {
     user: null,
-    destination: null,
+    tasks: null,
     travelTimeInformation: null
 }
 
@@ -13,8 +13,8 @@ export const theSlice = createSlice({
         setUser: (state, action) => {
             state.user = action.payload
         },
-        setDestination: (state, action) => {
-            state.destination = action.payload
+        setTasks: (state, action) => {
+            state.tasks = action.payload
         },
         setTravelTimeInformation: (state, action) => {
             state.travelTimeInformation = action.payload
@@ -22,10 +22,10 @@ export const theSlice = createSlice({
     }
 })
 
-export const { setUser, setDestination, setTravelTimeInformation} = theSlice.actions
+export const { setUser, setTasks, setTravelTimeInformation} = theSlice.actions
 
 export const selectUser = (state) => state.the.user
-export const selectDestination = (state) => state.the.destination
+export const selectTasks = (state) => state.the.tasks
 export const selectTravelTimeInformation = (state) => state.the.TravelTimeInformation
 
 export default theSlice.reducer

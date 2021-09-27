@@ -14,7 +14,7 @@ import Create from './Components/Create';
 import Commands from './Components/Commands';
 
 import { useDispatch, useSelector } from 'react-redux'
-import {setUser, selectUser} from './slices/theSlice'
+import {setUser, selectUser, setTasks, selectTasks} from './slices/theSlice'
 
 function App() {
   let history = useHistory()
@@ -34,18 +34,38 @@ function App() {
   }
   //logout--------------------------------------------------------
 
-
+  async function getUser() {
+    const res = await fetch("/me")
+    if (res.ok) {
+      const json = await res.json()
+      dispatch(setUser(json))
+      history.push("/")
+    }
+  }
   useEffect(() => {
-    async function getUser() {
-      const res = await fetch("/me")
-      if (res.ok) {
-        const json = await res.json()
-        dispatch(setUser(json))
-        history.push("/")
+    
+    getUser()
+    getTasks()
+  }, [])
+
+  // retrieve tasks-------------------------------------------------------->
+  async function getTasks() {
+    const res1 = await fetch("/received")
+    if (res1.ok) {
+      const receivedData = await res1.json()
+      const res2 = await fetch('/sent')
+      if (res2.ok) {
+        const sentData = await res2.json()
+        dispatch(setTasks({
+          received: receivedData,
+          sent: sentData
+        }))
       }
     }
-    getUser()
-  }, [])
+  }
+  useEffect(() => {
+
+  },[])
 
 
   return (
