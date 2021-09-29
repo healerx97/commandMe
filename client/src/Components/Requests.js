@@ -5,7 +5,7 @@ import ReceivedCard from './ReceivedCard'
 
 function Requests() {
     const receivedData = useSelector(selectTasks)
-    const renderReceived = receivedData?.received.map((task)=> <ReceivedCard task={task}/>)
+    const renderReceived = receivedData?.received?.map((task)=> <ReceivedCard task={task}/>)
     return (
         <div class='container flex-col p-3 mx-auto'>
             <div class='mb-7 font-bold text-3xl text-center'>

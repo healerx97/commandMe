@@ -20,7 +20,7 @@ function NavBar({handleLogout}) {
                 <img class="w-12 bg-blue-700" src="/fbicon.png" alt=""/>
             </div>
             <h2 class='mx-5 uppercase py-1 px-2'>
-                Account: {user?.name}
+                {user? `Account: ${user?.name}`: null}
             </h2>
             <ul class="hidden sm:flex flex-1 justify-end items-center gap-12 text-black uppercase text-xs">
                 <Link to='/commands'>

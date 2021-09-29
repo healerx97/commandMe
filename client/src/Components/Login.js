@@ -34,8 +34,9 @@ function Login() {
 
     return (
         <section class="relative">
+            <div class='bg-gray-100'>
             <div class='container mx-auto flex flex-col-reverse lg:flex-row items-center gap-12 mt-14 lg:mt-28 lg:p-8'>
-                <div class='flex flex-1 flex-col items-center lg:items-center mt-28 shadow-md'>
+                <div class='flex flex-1 flex-col items-center lg:items-center mt-28'>
                     <h2 class="text-blue-400 text-3xl md:text-4 lg:text-5xl text-center lg:text-left mb-6">Login</h2>
                     <form class='flex-col flex w-96 items-center'>
                         <div class='flex-col flex w-3/4 mb-4'>
@@ -53,6 +54,7 @@ function Login() {
                     </form>
                 </div>
                 
+            </div>
             </div>
         </section>
     )
