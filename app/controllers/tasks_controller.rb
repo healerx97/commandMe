@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
-    skip_before_action :authorize, only: [:index]
+    skip_before_action :authorize, only: [:index, :create]
 
     def index
         tasks = Task.all
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
     end
 
     def task_params
-        params.permit(:due_date, :accepted, :reviewed, :commander_id, :receiver_id)
+        params.permit(:due_date, :title, :accepted, :reviewed, :commander_id, :receiver_id)
     end
     
 end
