@@ -31,6 +31,11 @@ function Create() {
         setAutoC(temp)
         console.log(temp)
     }
+    const renderAutoCList = autoC.map((user)=> {
+        return(
+            <div></div>
+        )
+    })
 
     return (
         <section class='relative'>
@@ -46,6 +51,7 @@ function Create() {
                         <div class='flex-col'>
                             <label class='flex mb-1'>Send to:</label>
                             <input class='flex py-2 px-2 border shadow-md mb-2 rounded' type='text' value={reciever} onChange={(e)=>handleReceiver(e)} placeholder='Receiver'/>
+                            <div class='flex py-2 px-2 bg-gray-400 shadow-md mb-2 rounded'>yes</div>
                             
                         </div>
                         <div class='flex-col'>
