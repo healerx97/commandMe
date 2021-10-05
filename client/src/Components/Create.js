@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {setUser, selectUser} from '../slices/theSlice'
+import {useHistory} from 'react-router-dom'
+
 
 
 function Create() {
+    const history = useHistory()
     const [taskName, setTaskName] = useState('')
     const [receiver, setReciever] = useState('')
     const [userList, setUserList] = useState([])
@@ -66,6 +69,7 @@ function Create() {
         if (res.ok) {
             const data = await res.json()
             console.log(data)
+            history.push('/commands')
         }
     }
 
