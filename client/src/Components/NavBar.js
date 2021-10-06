@@ -17,7 +17,9 @@ function NavBar({handleLogout}) {
     return (
         <nav class="bg-white container flex items-center py-4 mt-4 p-3 mx-auto">
             <div class="py-1">
+                <Link to='/'>
                 <img class="w-12 bg-blue-700" src="/fbicon.png" alt=""/>
+                </Link>
             </div>
             <h2 class='mx-5 uppercase py-1 px-2'>
                 {user? `Account: ${user?.name}`: null}
