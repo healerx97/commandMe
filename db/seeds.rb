@@ -23,7 +23,7 @@ end
 time = Time.current + 1.days
 
 20.times do
-    Task.create(due_date: time, title: Faker::Hobby.activity, accepted: false, reviewed: false, commander_id: rand(1..10), receiver_id: rand(1..10))
+    Task.create(due_date: time, title: Faker::Hobby.activity, accepted: null, reviewed: null, commander_id: rand(1..10), receiver_id: rand(1..10))
 end
 
 puts 'done'

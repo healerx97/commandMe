@@ -32,6 +32,30 @@ class TasksController < ApplicationController
         render json: tasks
     end
 
+    def accept
+        task = Task.find(params[:id])
+        task.update!(accepted: true)
+        render json: task
+    rescue ActiveRecord::RecordInvalid => e
+        render json: {errors: e.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
+    def notAccept
+        task = Task.find(params[:id])
+        task.update!(accepted: false)
+        render json: task
+    rescue ActiveRecord::RecordInvalid => e
+        render json: {errors: e.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
+    def review
+        task = Task.find(params[:id])
+        task.update!(reviewed: true)
+        render json: task
+    rescue ActiveRecord::RecordInvalid => e
+        render json: {errors: e.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
     private
 
     def render_not_found
