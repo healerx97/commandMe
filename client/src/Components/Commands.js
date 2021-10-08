@@ -5,8 +5,8 @@ import SentCard from './SentCard'
 
 function Commands() {
     const sentData = useSelector(selectTasks)
-    console.log(sentData.sent)
-    const renderSent = sentData?.sent?.map((task)=> <SentCard task={task}/>)
+    const filteredSent = sentData?.sent?.filter((task) => task.reviewed === false)
+    const renderSent = filteredSent?.map((task)=> <SentCard task={task}/>)
     return (
         <div class='container flex-col p-3 mx-auto'>
             <div class='mb-7 font-bold text-3xl text-center'>

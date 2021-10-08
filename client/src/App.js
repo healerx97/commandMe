@@ -63,9 +63,7 @@ function App() {
       }
     }
   }
-  useEffect(() => {
 
-  },[])
 
 
   return (
