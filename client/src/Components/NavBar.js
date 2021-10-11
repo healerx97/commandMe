@@ -13,7 +13,7 @@ function NavBar({handleLogout}) {
             history.push('/login')
         }
     }
-    console.log(user)
+    // console.log(user)
     return (
         <nav class="bg-white container flex items-center py-4 mt-4 p-3 mx-auto">
             <div class="py-1">

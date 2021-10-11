@@ -5,7 +5,9 @@ import {setUser, selectUser, setTasks, selectTasks} from '../slices/theSlice'
 function Home() {
     const taskData = useSelector(selectTasks)
     console.log(taskData)
-    // const filteredTasks = taskData.filter((task)=> task)
+    // const filteredTasks = taskData?.received?.filter((task)=> task.due_date.getDay() === 1)
+    // console.log(filteredTasks)
+    console.log(taskData?.sent[4])
     return (
         <div class='relative'>
             <div class='container mx-auto'>
@@ -15,6 +17,7 @@ function Home() {
                         <div class='border p-3 flex-col w-full flex-1 bg-red-100 shadow rounded-md'>
                             <p class='text-white bg-purple-300 rounded w-max p-3'>Due This Week</p>
                             <div class='border-b border-black font-bold'>Monday</div>
+
                             <div class='border-b border-black font-bold'>Tuesday</div>
                             <div class='border-b border-black font-bold'>Wednesday</div>
                             <div class='border-b border-black font-bold'>Thursday</div>

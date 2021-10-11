@@ -13,7 +13,7 @@ function Create() {
     const [autoC, setAutoC] = useState([])
     let tomorrow = new Date()
     tomorrow.setDate(tomorrow.getDate()+1)
-    const [due_date, setDueDate] = useState(tomorrow)
+    const [due_date, setDueDate] = useState('')
     let commander = useSelector(selectUser)
 
 
@@ -72,7 +72,7 @@ function Create() {
             history.push('/commands')
         }
     }
-
+    console.log(due_date)
     return (
         <section class='relative'>
             <div class='flex-col container p-3 border mx-auto mt-6 shadow'>
@@ -93,7 +93,18 @@ function Create() {
                         </div>
                         <div class='flex-col'>
                             <label class='flex mb-1'>Due date:</label>
-                            <input class='flex py-2 px-2 border shadow-md mb-2 rounded' type='date' onChange={(e)=>setDueDate(Date(e.target.value))}/>
+                            <input class='flex py-2 px-2 border shadow-md mb-2 rounded' type='date' onChange={(e)=> {
+                                let strDate = e.target.value.split('-')
+                                console.log(strDate)
+                                let d = new Date()
+                                d.setFullYear(strDate[0])
+                                d.setMonth(strDate[1]-1)
+                                d.setDate(strDate[2])
+                                d.setHours(23)
+                                d.setMinutes(59)
+                                d.setSeconds(59)
+                                setDueDate(d)                              
+                                }}/>
                         </div>
                         <button class="flex justify-end self-end border shadow-md bg-blue-500 text-white rounded px-3 mb-2 py-2" type='submit'>Command</button>
                     </div>
