@@ -4,10 +4,17 @@ import {setUser, selectUser, setTasks, selectTasks} from '../slices/theSlice'
 
 function Home() {
     const taskData = useSelector(selectTasks)
-    console.log(taskData)
-    // const filteredTasks = taskData?.received?.filter((task)=> task.due_date.getDay() === 1)
-    // console.log(filteredTasks)
-    console.log(taskData?.sent[4])
+    let tasks = taskData?.received
+    //rendering tasks by day of week(n), sunday=0 saturday=6------------------------
+    let renderTasks = (n) => {
+        let filtered = tasks.filter((task)=> {
+            let d = new Date(task['due_date'])
+            return (d.getDay() == n)
+        })
+        return filtered.map((f)=> <div>{f.title}</div>)
+        
+    }
+    
     return (
         <div class='relative'>
             <div class='container mx-auto'>
@@ -17,11 +24,15 @@ function Home() {
                         <div class='border p-3 flex-col w-full flex-1 bg-red-100 shadow rounded-md'>
                             <p class='text-white bg-purple-300 rounded w-max p-3'>Due This Week</p>
                             <div class='border-b border-black font-bold'>Monday</div>
-
+                            {renderTasks(1)}
                             <div class='border-b border-black font-bold'>Tuesday</div>
+                            {renderTasks(2)}
                             <div class='border-b border-black font-bold'>Wednesday</div>
+                            {renderTasks(3)}
                             <div class='border-b border-black font-bold'>Thursday</div>
+                            {renderTasks(4)}
                             <div class='border-b border-black font-bold'>Friday</div>
+                            {renderTasks(5)}
                         </div>
                         <div class='border p-3 flex-col flex-1 w-full bg-blue-200 shadow rounded-md'>
                         <p class='text-white bg-purple-300 rounded w-max p-3'>Due This Month</p>
