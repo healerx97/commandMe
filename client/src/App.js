@@ -67,7 +67,7 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App" style={{fontFamily: 'Courier'}}>
       <NavBar handleLogout={handleLogout}/>
       <Switch>
         <Route exact path = '/requests'>

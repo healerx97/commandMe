@@ -34,7 +34,7 @@ function NavBar({handleLogout}) {
                 <Link to='/create'>
                     <li class="cursor-pointer hover:shadow-md rounded px-5 py-3 hover:bg-gray-100"> Create </li>
                 </Link>
-                <button onClick={linkLogin} class="rounded bg-red-300 text-black py-3 px-4 uppercase">{user? "Logout":"Login"}</button>
+                <button onClick={linkLogin} class="rounded bg-red-300 text-black py-3 px-4 uppercase transform hover:bg-red-400 hover:scale-105 transition duration-500">{user? "Logout":"Login"}</button>
             </ul>
             <div class="flex sm:hidden flex-1 justify-end"> 
                 <i class="text-2xl fas fa-bars cursor-pointer"></i>
