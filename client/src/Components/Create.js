@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom'
 
 
 
-function Create() {
+function Create({getTasks}) {
     const history = useHistory()
     const [taskName, setTaskName] = useState('')
     const [receiver, setReciever] = useState('')
@@ -68,7 +68,7 @@ function Create() {
         })
         if (res.ok) {
             const data = await res.json()
-            console.log(data)
+            getTasks()
             history.push('/commands')
         }
     }

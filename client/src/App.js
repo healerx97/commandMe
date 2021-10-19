@@ -77,7 +77,7 @@ function App() {
           {user? <Commands/> : <Redirect to='/login'/>}
         </Route>
         <Route exact path = '/create'>
-          {user? <Create/> : <Redirect to='/login'/>}
+          {user? <Create getTasks={getTasks}/> : <Redirect to='/login'/>}
         </Route>
         <Route exact path = "/login">
           <Login/>
